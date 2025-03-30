@@ -25,6 +25,10 @@ class GoogleCloudFunctionsV2alphaOperationMetadata extends \Google\Collection
    */
   public $apiVersion;
   /**
+   * @var string
+   */
+  public $buildName;
+  /**
    * @var bool
    */
   public $cancelRequested;
@@ -37,10 +41,18 @@ class GoogleCloudFunctionsV2alphaOperationMetadata extends \Google\Collection
    */
   public $endTime;
   /**
+   * @var string
+   */
+  public $operationType;
+  /**
    * @var array[]
    */
   public $requestResource;
-  protected $stagesType = Stage::class;
+  /**
+   * @var string
+   */
+  public $sourceToken;
+  protected $stagesType = GoogleCloudFunctionsV2alphaStage::class;
   protected $stagesDataType = 'array';
   /**
    * @var string
@@ -68,6 +80,20 @@ class GoogleCloudFunctionsV2alphaOperationMetadata extends \Google\Collection
   public function getApiVersion()
   {
     return $this->apiVersion;
+  }
+  /**
+   * @param string
+   */
+  public function setBuildName($buildName)
+  {
+    $this->buildName = $buildName;
+  }
+  /**
+   * @return string
+   */
+  public function getBuildName()
+  {
+    return $this->buildName;
   }
   /**
    * @param bool
@@ -112,6 +138,20 @@ class GoogleCloudFunctionsV2alphaOperationMetadata extends \Google\Collection
     return $this->endTime;
   }
   /**
+   * @param string
+   */
+  public function setOperationType($operationType)
+  {
+    $this->operationType = $operationType;
+  }
+  /**
+   * @return string
+   */
+  public function getOperationType()
+  {
+    return $this->operationType;
+  }
+  /**
    * @param array[]
    */
   public function setRequestResource($requestResource)
@@ -126,14 +166,28 @@ class GoogleCloudFunctionsV2alphaOperationMetadata extends \Google\Collection
     return $this->requestResource;
   }
   /**
-   * @param Stage[]
+   * @param string
+   */
+  public function setSourceToken($sourceToken)
+  {
+    $this->sourceToken = $sourceToken;
+  }
+  /**
+   * @return string
+   */
+  public function getSourceToken()
+  {
+    return $this->sourceToken;
+  }
+  /**
+   * @param GoogleCloudFunctionsV2alphaStage[]
    */
   public function setStages($stages)
   {
     $this->stages = $stages;
   }
   /**
-   * @return Stage[]
+   * @return GoogleCloudFunctionsV2alphaStage[]
    */
   public function getStages()
   {

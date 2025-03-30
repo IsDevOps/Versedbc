@@ -12,11 +12,21 @@
 - [Usage](#usage)
 - [Support](#support)
 
+> [!IMPORTANT]
+> Laravel 11 will be the last version supported for v3.0. v4 is being actively worked on, and will be released by end of October 2024. For v4, following are the changes being introduced:
+> * PHP 8.1+ required.
+> * Laravel 10 & onwards required.
+> * Integration of PayPal JS SDK.
+> * Symfony plugin. 
     
 <a name="introduction"></a>
 ## Documentation
 
 The documentation for the package can be viewed by clicking the following link:
+
+[https://laravel-paypal.readthedocs.io/en/latest/](https://laravel-paypal.readthedocs.io/en/latest/)
+
+The old documentation can be found at the following link:
 
 [https://srmklive.github.io/laravel-paypal/docs.html](https://srmklive.github.io/laravel-paypal/docs.html)
 

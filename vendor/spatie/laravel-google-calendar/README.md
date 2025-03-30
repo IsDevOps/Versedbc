@@ -3,8 +3,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-google-calendar.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-google-calendar)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-![Test Status](https://img.shields.io/github/workflow/status/spatie/laravel-google-calendar/run-tests?label=tests)
-![Code Style Status](https://img.shields.io/github/workflow/status/spatie/laravel-google-calendar/Check%20&%20fix%20styling?label=code%20style)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-google-calendar.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-google-calendar)
 
 This package makes working with a Google Calendar a breeze. Once it has been set up you can do these things:
@@ -12,7 +10,7 @@ This package makes working with a Google Calendar a breeze. Once it has been set
 ```php
 use Spatie\GoogleCalendar\Event;
 
-//create a new event
+// create a new event
 $event = new Event;
 
 $event->name = 'A new event';
@@ -23,6 +21,7 @@ $event->addAttendee([
     'email' => 'john@example.com',
     'name' => 'John Doe',
     'comment' => 'Lorum ipsum',
+    'responseStatus' => 'needsAction',
 ]);
 $event->addAttendee(['email' => 'anotherEmail@gmail.com']);
 $event->addMeetLink(); // optionally add a google meet link to the event
@@ -75,7 +74,7 @@ php artisan vendor:publish --provider="Spatie\GoogleCalendar\GoogleCalendarServi
 ```
 
 This will publish a file called `google-calendar.php` in your config-directory with these contents:
-```
+```php
 return [
 
     'default_auth_profile' => env('GOOGLE_CALENDAR_AUTH_PROFILE', 'service_account'),
@@ -109,7 +108,7 @@ return [
     ],
 
     /*
-     *  The id of the Google Calendar that will be used by default.
+     * The id of the Google Calendar that will be used by default.
      */
     'calendar_id' => env('GOOGLE_CALENDAR_ID'),
 ];
@@ -264,7 +263,7 @@ $eventId = Event::get()->first()->id;
 // you can also get the id after creating the event, then you can save it to database.
 $event = new Event;
 $newEvent = $event->save();
-echo $newEvent->id; // displey the event id
+echo $newEvent->id; // display the event id
 ```
 
 You can use this id to fetch a single event from Google:
@@ -286,7 +285,7 @@ $event->save();
 Alternatively, you can use the update method:
 
 ```php
-$event = Event::find($eventId)
+$event = Event::find($eventId);
 
 $event->update(['name' => 'My updated title']);
 ```
@@ -309,8 +308,8 @@ You can set source urls in your events, which are only visible to the creator of
 $yourEvent->source = [
    'title' => 'Test Source Title',
    'url' => 'http://testsource.url',
- ];
- ```
+];
+```
 
 ## Setting a color
 

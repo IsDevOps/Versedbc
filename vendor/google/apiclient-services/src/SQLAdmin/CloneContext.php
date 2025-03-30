@@ -46,6 +46,14 @@ class CloneContext extends \Google\Collection
    * @var string
    */
   public $pointInTime;
+  /**
+   * @var string
+   */
+  public $preferredSecondaryZone;
+  /**
+   * @var string
+   */
+  public $preferredZone;
 
   /**
    * @param string
@@ -144,6 +152,34 @@ class CloneContext extends \Google\Collection
   public function getPointInTime()
   {
     return $this->pointInTime;
+  }
+  /**
+   * @param string
+   */
+  public function setPreferredSecondaryZone($preferredSecondaryZone)
+  {
+    $this->preferredSecondaryZone = $preferredSecondaryZone;
+  }
+  /**
+   * @return string
+   */
+  public function getPreferredSecondaryZone()
+  {
+    return $this->preferredSecondaryZone;
+  }
+  /**
+   * @param string
+   */
+  public function setPreferredZone($preferredZone)
+  {
+    $this->preferredZone = $preferredZone;
+  }
+  /**
+   * @return string
+   */
+  public function getPreferredZone()
+  {
+    return $this->preferredZone;
   }
 }
 

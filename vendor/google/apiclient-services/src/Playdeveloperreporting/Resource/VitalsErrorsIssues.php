@@ -45,28 +45,30 @@ class VitalsErrorsIssues extends \Google\Service\Resource
    * OR apiLevel = 29`. * `versionCode`: Matches error issues that occurred in the
    * requested app version codes only. Example: `versionCode = 123 OR versionCode
    * = 456`. * `deviceModel`: Matches error issues that occurred in the requested
-   * devices. Example: `deviceModel = "walleye" OR deviceModel = "marlin"`. *
-   * `deviceType`: Matches error issues that occurred in the requested device
-   * types. Example: `deviceType = "PHONE"`. * `errorIssueType`: Matches error
-   * issues of the requested types only. Valid candidates: `CRASH`, `ANR`.
-   * Example: `errorIssueType = CRASH OR errorIssueType = ANR`. *
-   * `appProcessState`: Matches error issues on the process state of an app,
-   * indicating whether an app runs in the foreground (user-visible) or
-   * background. Valid candidates: `FOREGROUND`, `BACKGROUND`. Example:
-   * `appProcessState = FOREGROUND`. * `isUserPerceived`: Matches error issues
-   * that are user-perceived. It is not accompanied by any operators. Example:
-   * `isUserPerceived`. ** Supported operators:** * Comparison operators: The only
-   * supported comparison operator is equality. The filtered field must appear on
-   * the left hand side of the comparison. * Logical Operators: Logical operators
-   * `AND` and `OR` can be used to build complex filters following a conjunctive
-   * normal form (CNF), i.e., conjunctions of disjunctions. The `OR` operator
-   * takes precedence over `AND` so the use of parenthesis is not necessary when
-   * building CNF. The `OR` operator is only supported to build disjunctions that
-   * apply to the same field, e.g., `versionCode = 123 OR errorIssueType = ANR` is
-   * not a valid filter. ** Examples ** Some valid filtering expressions: *
-   * `versionCode = 123 AND errorIssueType = ANR` * `versionCode = 123 AND
-   * errorIssueType = OR errorIssueType = CRASH` * `versionCode = 123 AND
-   * (errorIssueType = OR errorIssueType = CRASH)`
+   * devices. Example: `deviceModel = "google/walleye" OR deviceModel =
+   * "google/marlin"`. * `deviceBrand`: Matches error issues that occurred in the
+   * requested device brands. Example: `deviceBrand = "Google". * `deviceType`:
+   * Matches error issues that occurred in the requested device types. Example:
+   * `deviceType = "PHONE"`. * `errorIssueType`: Matches error issues of the
+   * requested types only. Valid candidates: `CRASH`, `ANR`, `NON_FATAL`. Example:
+   * `errorIssueType = CRASH OR errorIssueType = ANR`. * `appProcessState`:
+   * Matches error issues on the process state of an app, indicating whether an
+   * app runs in the foreground (user-visible) or background. Valid candidates:
+   * `FOREGROUND`, `BACKGROUND`. Example: `appProcessState = FOREGROUND`. *
+   * `isUserPerceived`: Matches error issues that are user-perceived. It is not
+   * accompanied by any operators. Example: `isUserPerceived`. ** Supported
+   * operators:** * Comparison operators: The only supported comparison operator
+   * is equality. The filtered field must appear on the left hand side of the
+   * comparison. * Logical Operators: Logical operators `AND` and `OR` can be used
+   * to build complex filters following a conjunctive normal form (CNF), i.e.,
+   * conjunctions of disjunctions. The `OR` operator takes precedence over `AND`
+   * so the use of parenthesis is not necessary when building CNF. The `OR`
+   * operator is only supported to build disjunctions that apply to the same
+   * field, e.g., `versionCode = 123 OR errorIssueType = ANR` is not a valid
+   * filter. ** Examples ** Some valid filtering expressions: * `versionCode = 123
+   * AND errorIssueType = ANR` * `versionCode = 123 AND errorIssueType = OR
+   * errorIssueType = CRASH` * `versionCode = 123 AND (errorIssueType = OR
+   * errorIssueType = CRASH)`
    * @opt_param int interval.endTime.day Optional. Day of month. Must be from 1 to
    * 31 and valid for the year and month, or 0 if specifying a datetime without a
    * day.
@@ -83,9 +85,9 @@ class VitalsErrorsIssues extends \Google\Service\Resource
    * time. Must normally be from 0 to 59, defaults to 0. An API may allow the
    * value 60 if it allows leap-seconds.
    * @opt_param string interval.endTime.timeZone.id IANA Time Zone Database time
-   * zone, e.g. "America/New_York".
+   * zone. For example "America/New_York".
    * @opt_param string interval.endTime.timeZone.version Optional. IANA Time Zone
-   * Database version number, e.g. "2019a".
+   * Database version number. For example "2019a".
    * @opt_param string interval.endTime.utcOffset UTC offset. Must be whole
    * seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00
    * would be represented as { seconds: -14400 }.
@@ -107,14 +109,21 @@ class VitalsErrorsIssues extends \Google\Service\Resource
    * time. Must normally be from 0 to 59, defaults to 0. An API may allow the
    * value 60 if it allows leap-seconds.
    * @opt_param string interval.startTime.timeZone.id IANA Time Zone Database time
-   * zone, e.g. "America/New_York".
+   * zone. For example "America/New_York".
    * @opt_param string interval.startTime.timeZone.version Optional. IANA Time
-   * Zone Database version number, e.g. "2019a".
+   * Zone Database version number. For example "2019a".
    * @opt_param string interval.startTime.utcOffset UTC offset. Must be whole
    * seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00
    * would be represented as { seconds: -14400 }.
    * @opt_param int interval.startTime.year Optional. Year of date. Must be from 1
    * to 9999, or 0 if specifying a datetime without a year.
+   * @opt_param string orderBy Specifies a field that will be used to order the
+   * results. ** Supported dimensions:** * `errorReportCount`: Orders issues by
+   * number of error reports. * `distinctUsers`: Orders issues by number of unique
+   * affected users. ** Supported operations:** * `asc` for ascending order. *
+   * `desc` for descending order. Format: A field and an operation, e.g.,
+   * `errorReportCount desc` *Note:* currently only one field is supported at a
+   * time.
    * @opt_param int pageSize The maximum number of error issues to return. The
    * service may return fewer than this value. If unspecified, at most 50 error
    * issues will be returned. The maximum value is 1000; values above 1000 will be
@@ -123,7 +132,11 @@ class VitalsErrorsIssues extends \Google\Service\Resource
    * Provide this to retrieve the subsequent page. When paginating, all other
    * parameters provided to the request must match the call that provided the page
    * token.
+   * @opt_param int sampleErrorReportLimit Optional. Number of sample error
+   * reports to return per ErrorIssue. If unspecified, 0 will be used. *Note:*
+   * currently only 0 and 1 are supported.
    * @return GooglePlayDeveloperReportingV1beta1SearchErrorIssuesResponse
+   * @throws \Google\Service\Exception
    */
   public function search($parent, $optParams = [])
   {

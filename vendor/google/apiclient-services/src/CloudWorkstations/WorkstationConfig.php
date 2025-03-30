@@ -19,7 +19,9 @@ namespace Google\Service\CloudWorkstations;
 
 class WorkstationConfig extends \Google\Collection
 {
-  protected $collection_key = 'persistentDirectories';
+  protected $collection_key = 'replicaZones';
+  protected $allowedPortsType = PortRange::class;
+  protected $allowedPortsDataType = 'array';
   /**
    * @var string[]
    */
@@ -41,6 +43,10 @@ class WorkstationConfig extends \Google\Collection
    */
   public $deleteTime;
   /**
+   * @var bool
+   */
+  public $disableTcpConnections;
+  /**
    * @var string
    */
   public $displayName;
@@ -50,10 +56,16 @@ class WorkstationConfig extends \Google\Collection
   public $enableAuditAgent;
   protected $encryptionKeyType = CustomerEncryptionKey::class;
   protected $encryptionKeyDataType = '';
+  protected $ephemeralDirectoriesType = EphemeralDirectory::class;
+  protected $ephemeralDirectoriesDataType = 'array';
   /**
    * @var string
    */
   public $etag;
+  /**
+   * @var bool
+   */
+  public $grantWorkstationAdminRoleOnCreate;
   protected $hostType = Host::class;
   protected $hostDataType = '';
   /**
@@ -65,15 +77,25 @@ class WorkstationConfig extends \Google\Collection
    */
   public $labels;
   /**
+   * @var int
+   */
+  public $maxUsableWorkstations;
+  /**
    * @var string
    */
   public $name;
   protected $persistentDirectoriesType = PersistentDirectory::class;
   protected $persistentDirectoriesDataType = 'array';
+  protected $readinessChecksType = ReadinessCheck::class;
+  protected $readinessChecksDataType = 'array';
   /**
    * @var bool
    */
   public $reconciling;
+  /**
+   * @var string[]
+   */
+  public $replicaZones;
   /**
    * @var string
    */
@@ -87,6 +109,20 @@ class WorkstationConfig extends \Google\Collection
    */
   public $updateTime;
 
+  /**
+   * @param PortRange[]
+   */
+  public function setAllowedPorts($allowedPorts)
+  {
+    $this->allowedPorts = $allowedPorts;
+  }
+  /**
+   * @return PortRange[]
+   */
+  public function getAllowedPorts()
+  {
+    return $this->allowedPorts;
+  }
   /**
    * @param string[]
    */
@@ -172,6 +208,20 @@ class WorkstationConfig extends \Google\Collection
     return $this->deleteTime;
   }
   /**
+   * @param bool
+   */
+  public function setDisableTcpConnections($disableTcpConnections)
+  {
+    $this->disableTcpConnections = $disableTcpConnections;
+  }
+  /**
+   * @return bool
+   */
+  public function getDisableTcpConnections()
+  {
+    return $this->disableTcpConnections;
+  }
+  /**
    * @param string
    */
   public function setDisplayName($displayName)
@@ -214,6 +264,20 @@ class WorkstationConfig extends \Google\Collection
     return $this->encryptionKey;
   }
   /**
+   * @param EphemeralDirectory[]
+   */
+  public function setEphemeralDirectories($ephemeralDirectories)
+  {
+    $this->ephemeralDirectories = $ephemeralDirectories;
+  }
+  /**
+   * @return EphemeralDirectory[]
+   */
+  public function getEphemeralDirectories()
+  {
+    return $this->ephemeralDirectories;
+  }
+  /**
    * @param string
    */
   public function setEtag($etag)
@@ -226,6 +290,20 @@ class WorkstationConfig extends \Google\Collection
   public function getEtag()
   {
     return $this->etag;
+  }
+  /**
+   * @param bool
+   */
+  public function setGrantWorkstationAdminRoleOnCreate($grantWorkstationAdminRoleOnCreate)
+  {
+    $this->grantWorkstationAdminRoleOnCreate = $grantWorkstationAdminRoleOnCreate;
+  }
+  /**
+   * @return bool
+   */
+  public function getGrantWorkstationAdminRoleOnCreate()
+  {
+    return $this->grantWorkstationAdminRoleOnCreate;
   }
   /**
    * @param Host
@@ -270,6 +348,20 @@ class WorkstationConfig extends \Google\Collection
     return $this->labels;
   }
   /**
+   * @param int
+   */
+  public function setMaxUsableWorkstations($maxUsableWorkstations)
+  {
+    $this->maxUsableWorkstations = $maxUsableWorkstations;
+  }
+  /**
+   * @return int
+   */
+  public function getMaxUsableWorkstations()
+  {
+    return $this->maxUsableWorkstations;
+  }
+  /**
    * @param string
    */
   public function setName($name)
@@ -298,6 +390,20 @@ class WorkstationConfig extends \Google\Collection
     return $this->persistentDirectories;
   }
   /**
+   * @param ReadinessCheck[]
+   */
+  public function setReadinessChecks($readinessChecks)
+  {
+    $this->readinessChecks = $readinessChecks;
+  }
+  /**
+   * @return ReadinessCheck[]
+   */
+  public function getReadinessChecks()
+  {
+    return $this->readinessChecks;
+  }
+  /**
    * @param bool
    */
   public function setReconciling($reconciling)
@@ -310,6 +416,20 @@ class WorkstationConfig extends \Google\Collection
   public function getReconciling()
   {
     return $this->reconciling;
+  }
+  /**
+   * @param string[]
+   */
+  public function setReplicaZones($replicaZones)
+  {
+    $this->replicaZones = $replicaZones;
+  }
+  /**
+   * @return string[]
+   */
+  public function getReplicaZones()
+  {
+    return $this->replicaZones;
   }
   /**
    * @param string

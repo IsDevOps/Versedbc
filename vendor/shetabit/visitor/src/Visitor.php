@@ -231,31 +231,23 @@ class Visitor implements UserAgentParser
      *
      * @param Model $model
      */
-    public function visit($slug = '', $country = '', Model $model = null)
+    public function visit(Model $model = null)
     {
+        foreach ($this->except as $path) {
+            if ($this->request->is($path)) {
+                return;
+            }
+        }
+
+
         $data = $this->prepareLog();
-        if(!empty($slug))
-        {
-            $data['slug'] = $slug;
-        }
-		
-		if(!empty($country))
-        {
-            $data['country'] = $country;
-        }
-        if(in_array($this->request->path(), $this->except))
-        {
-            unset($data['request']);
-        }
-        if(!empty($model) && method_exists($model, 'visitLogs'))
-        {
+
+        if (null !== $model && method_exists($model, 'visitLogs')) {
             $visit = $model->visitLogs()->create($data);
-        }
-        else
-        {
-            //            $rec = Visit::where('ip', 'LIKE', $data['ip'])->whereDate('created_at', 'LIKE', date('Y-m-d'))->first();
+        } else {
             $visit = Visit::create($data);
         }
+
         return $visit;
     }
 

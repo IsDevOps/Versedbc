@@ -25,9 +25,19 @@ class GoogleCloudRunV2Container extends \Google\Collection
    */
   public $args;
   /**
+   * @var string
+   */
+  public $baseImageUri;
+  protected $buildInfoType = GoogleCloudRunV2BuildInfo::class;
+  protected $buildInfoDataType = '';
+  /**
    * @var string[]
    */
   public $command;
+  /**
+   * @var string[]
+   */
+  public $dependsOn;
   protected $envType = GoogleCloudRunV2EnvVar::class;
   protected $envDataType = 'array';
   /**
@@ -68,6 +78,34 @@ class GoogleCloudRunV2Container extends \Google\Collection
     return $this->args;
   }
   /**
+   * @param string
+   */
+  public function setBaseImageUri($baseImageUri)
+  {
+    $this->baseImageUri = $baseImageUri;
+  }
+  /**
+   * @return string
+   */
+  public function getBaseImageUri()
+  {
+    return $this->baseImageUri;
+  }
+  /**
+   * @param GoogleCloudRunV2BuildInfo
+   */
+  public function setBuildInfo(GoogleCloudRunV2BuildInfo $buildInfo)
+  {
+    $this->buildInfo = $buildInfo;
+  }
+  /**
+   * @return GoogleCloudRunV2BuildInfo
+   */
+  public function getBuildInfo()
+  {
+    return $this->buildInfo;
+  }
+  /**
    * @param string[]
    */
   public function setCommand($command)
@@ -80,6 +118,20 @@ class GoogleCloudRunV2Container extends \Google\Collection
   public function getCommand()
   {
     return $this->command;
+  }
+  /**
+   * @param string[]
+   */
+  public function setDependsOn($dependsOn)
+  {
+    $this->dependsOn = $dependsOn;
+  }
+  /**
+   * @return string[]
+   */
+  public function getDependsOn()
+  {
+    return $this->dependsOn;
   }
   /**
    * @param GoogleCloudRunV2EnvVar[]

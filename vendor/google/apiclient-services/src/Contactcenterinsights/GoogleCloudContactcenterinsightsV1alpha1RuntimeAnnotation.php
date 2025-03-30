@@ -27,6 +27,8 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation extends \Google\
   protected $answerFeedbackDataType = '';
   protected $articleSuggestionType = GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionData::class;
   protected $articleSuggestionDataType = '';
+  protected $conversationSummarizationSuggestionType = GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData::class;
+  protected $conversationSummarizationSuggestionDataType = '';
   /**
    * @var string
    */
@@ -43,6 +45,8 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation extends \Google\
   protected $smartReplyDataType = '';
   protected $startBoundaryType = GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary::class;
   protected $startBoundaryDataType = '';
+  protected $userInputType = GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput::class;
+  protected $userInputDataType = '';
 
   /**
    * @param string
@@ -85,6 +89,20 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation extends \Google\
   public function getArticleSuggestion()
   {
     return $this->articleSuggestion;
+  }
+  /**
+   * @param GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData
+   */
+  public function setConversationSummarizationSuggestion(GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData $conversationSummarizationSuggestion)
+  {
+    $this->conversationSummarizationSuggestion = $conversationSummarizationSuggestion;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData
+   */
+  public function getConversationSummarizationSuggestion()
+  {
+    return $this->conversationSummarizationSuggestion;
   }
   /**
    * @param string
@@ -183,6 +201,20 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation extends \Google\
   public function getStartBoundary()
   {
     return $this->startBoundary;
+  }
+  /**
+   * @param GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput
+   */
+  public function setUserInput(GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput $userInput)
+  {
+    $this->userInput = $userInput;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput
+   */
+  public function getUserInput()
+  {
+    return $this->userInput;
   }
 }
 
